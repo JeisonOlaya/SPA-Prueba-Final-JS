@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro | Eventos</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+</head>
+
+<body class="login-page">
+    <main class="login-container">
+        <h1 class="login-title">Crea tu cuenta</h1>
+        <form id="registerForm" class="login-form">
+            <input type="text" id="name" placeholder="Nombre completo" required />
+            <input type="email" id="email" placeholder="Correo electrónico" required />
+            <input type="password" id="password" placeholder="Contraseña" required />
+            <button type="submit">Registrarme</button>
+            <p id="errorMsg" class="error-msg"></p>
+        </form>
+        <p class="login-footer">
+            ¿Ya tienes cuenta? <a href="./login.html">Inicia sesión aquí</a>
+        </p>
+    </main>
+
+    <script type="module">
+        import { register } from "../js/auth.js";
+
+        const form = document.getElementById("registerForm");
+        const errorMsg = document.getElementById("errorMsg");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const name = form.name.value.trim();
+            const email = form.email.value.trim();
+            const password = form.password.value.trim();
+
+            try {
+                await register(name, email, password);
+                window.location.href = "./login.html";
+            } catch (err) {
+                errorMsg.textContent = err.message;
+            }
+        });
+    </script>
+</body>
+
+</html>

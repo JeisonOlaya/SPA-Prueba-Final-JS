@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | Eventos</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    
+</head>
+
+<body class="dashboard-page">
+    <header class="dashboard-header">
+        <h1>Eventos disponibles</h1>
+        <div class="dashboard-user">
+            <span id="userName"></span>
+            <button id="logoutBtn">Cerrar sesión</button>
+        </div>
+    </header>
+
+    <main>
+        <div id="adminTools" class="admin-tools" style="display: none;">
+            <a href="/public/events/create.html" class="create-button">+ Crear nuevo evento</a>
+        </div>
+        <section id="eventsContainer" class="events-grid"></section>
+    </main>
+
+    <script type="module">
+        import { getUser, logout } from "../js/session.js";
+        import { getEvents, deleteEvent } from "../js/events.js";
+        import { registerToEvent } from "../js/registration.js";
+
+        const user = getUser();
+        const eventsContainer = document.getElementById("eventsContainer");
+        const userName = document.getElementById("userName");
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        // Mostrar nombre de usuario
+        userName.textContent = user.name;
+
+        // Logout
+        logoutBtn.addEventListener("click", () => logout());
+
+        // Mostrar botón de crear si es admin
+        if (user.role === "admin") {
+            document.getElementById("adminTools").style.display = "block";
+        }
+
+        // Mostrar eventos
+        async function loadEvents() {
+            const events = await getEvents();
+            eventsContainer.innerHTML = "";
+
+            events.forEach(event => {
+                const card = document.createElement("div");
+                card.className = "event-card";
+                card.innerHTML = `
+        <h3>${event.title}</h3>
+        <p>${event.description}</p>
+        <p><strong>Fecha:</strong> ${event.date}</p>
+        <p><strong>Cupo:</strong> ${event.capacity}</p>
+        <div class="event-actions">
+            ${user.role === "admin"
+                        ? `
+                <a href="./events/edit.html?id=${event.id}" class="edit-btn">Editar</a>
+                <button class="delete-btn" data-id="${event.id}">Eliminar</button>
+            `
+                        : `
+            <button class="register-btn" data-id="${event.id}">Registrarme</button>
+            `}
+        </div>
+        `;
+                eventsContainer.appendChild(card);
+            });
+
+            // Botones eliminar
+            if (user.role === "admin") {
+                document.querySelectorAll(".delete-btn").forEach(btn => {
+                    btn.addEventListener("click", async () => {
+                        const id = btn.dataset.id;
+                        await deleteEvent(id);
+                        loadEvents();
+                    });
+                });
+            }
+
+            // Botones registrar
+            if (user.role === "visitor") {
+                document.querySelectorAll(".register-btn").forEach(btn => {
+                    btn.addEventListener("click", async () => {
+                        const eventId = btn.dataset.id;
+                        try {
+                            await registerToEvent(eventId, user.id);
+                            alert("¡Registrado correctamente!");
+                        } catch (err) {
+                            alert(err.message);
+                        }
+                    });
+                });
+            }
+        }
+
+        loadEvents();
+    </script>
+</body>
+
+</html>

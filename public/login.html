@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar Sesión | Eventos</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+
+<body class="login-page">
+    <main class="login-container">
+        <h1 class="login-title">Bienvenido de nuevo</h1>
+        <form id="loginForm" class="login-form">
+            <input type="email" id="email" placeholder="Correo electrónico" required />
+            <input type="password" id="password" placeholder="Contraseña" required />
+            <button type="submit">Iniciar sesión</button>
+            <p id="errorMsg" class="error-msg"></p>
+        </form>
+        <p class="login-footer">
+            ¿No tienes cuenta? <a href="/public/register.html">Regístrate aquí</a>
+        </p>
+    </main>
+
+    <script type="module">
+        import { login } from "../js/auth.js";
+
+        const form = document.getElementById("loginForm");
+        const errorMsg = document.getElementById("errorMsg");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = form.email.value.trim();
+            const password = form.password.value.trim();
+
+            try {
+                await login(email, password);
+                window.location.href = "./dashboard.html";
+            } catch (err) {
+                errorMsg.textContent = err.message;
+            }
+        });
+    </script>
+</body>
+
+</html>

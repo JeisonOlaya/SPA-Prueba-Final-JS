@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Redireccionando...</title>
+    <script type="module">
+        import { isLoggedIn } from "../js/session.js";
+
+        // Si el usuario ya tiene sesión, lo enviamos al dashboard
+        if (isLoggedIn()) {
+            window.location.href = "./dashboard.html";
+
+            
+        } else {
+            window.location.href = "./login.html";
+        }
+    </script>
+</head>
+
+<body>
+    <p>Redireccionando...</p>
+</body>
+
+</html>

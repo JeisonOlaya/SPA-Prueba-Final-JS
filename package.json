@@ -1,0 +1,17 @@
+{
+  "name": "jeisondavidolaya530",
+  "version": "1.0.0",
+  "description": "Este es un proyecto que hice como prueba de desempeño para el módulo 3 de JavaScript. Se trata de una SPA (Single Page Application) para gestionar eventos, con funciones para crear, editar y ver eventos. También se puede registrar usuarios e inscribirse a los eventos.",
+  "main": "index.js",
+  "scripts": {
+    "server": "json-server --watch db.json --port 3000",
+    "start": "live-server public"
+  },
+  "keywords": [],
+  "author": "Jeison David Olaya Ariza",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
+

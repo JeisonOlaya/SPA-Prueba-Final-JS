@@ -1,0 +1,91 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Admin",
+      "email": "admin@eventos.com",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
+      "id": "cf8c",
+      "name": "jeison olaya",
+      "email": "jeisonolaya@gmail.com",
+      "password": "antioquia2011",
+      "role": "visitor"
+    },
+    {
+      "id": "c77b",
+      "name": "andres",
+      "email": "andres@gmail.com",
+      "password": "antioquia2011",
+      "role": "visitor"
+    }
+  ],
+  "events": [
+    {
+      "id": "1",
+      "title": "Tech Talk 2025",
+      "description": "Una conferencia sobre las últimas tendencias en tecnología.",
+      "capacity": 100,
+      "date": "2025-07-30"
+    },
+    {
+      "id": "2",
+      "title": "Startup Pitch Day",
+      "description": "Evento para emprendedores que buscan inversión.",
+      "capacity": 50,
+      "date": "2025-08-05"
+    },
+    {
+      "id": "3",
+      "title": "Diseño UX/UI Avanzado",
+      "description": "Taller intensivo sobre experiencia de usuario y diseño de interfaces.",
+      "capacity": 30,
+      "date": "2025-08-12"
+    },
+    {
+      "id": "4",
+      "title": "Maratón de Hackeo Ético",
+      "description": "Pon a prueba tus habilidades en seguridad informática.",
+      "capacity": 60,
+      "date": "2025-08-19"
+    },
+    {
+      "id": "5",
+      "title": "Semana del Bienestar",
+      "description": "Eventos de yoga, meditación y nutrición para profesionales tech.",
+      "capacity": 80,
+      "date": "2025-08-25"
+    },
+    {
+      "id": "384f",
+      "title": "fiesta pagana",
+      "description": "concierto de la banada de rock mago de oz",
+      "capacity": 550,
+      "date": "2029-05-08"
+    }
+  ],
+  "registrations": [
+    {
+      "id": "68dd",
+      "eventId": "1",
+      "userId": "cf8c"
+    },
+    {
+      "id": "b971",
+      "eventId": "2",
+      "userId": "c77b"
+    },
+    {
+      "id": "3283",
+      "eventId": "3",
+      "userId": "c77b"
+    },
+    {
+      "id": "70c0",
+      "eventId": "3",
+      "userId": "c77b"
+    }
+  ]
+}
