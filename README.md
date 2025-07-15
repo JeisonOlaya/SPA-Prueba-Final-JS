@@ -10,7 +10,6 @@ El proyecto está dividido en carpetas para que todo esté ordenado. Hay una car
 
 - JavaScript (ES Modules)
 - HTML5
-- Bootstrap 5
 - json-server (para simular la base de datos)
 - Local Storage (para guardar la sesión)
 
