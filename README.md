@@ -53,5 +53,6 @@ Este usuario puede crear y editar eventos.
 - Nombre: Jeison Olaya
 - Clan: van Rossum
 - Correo: jeisonolaya58@gmail.com
+- cedula: 1096238530
 
 Gracias por revisar este proyecto 
